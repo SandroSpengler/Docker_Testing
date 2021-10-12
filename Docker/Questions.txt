@@ -1,0 +1,16 @@
+General Docker Questions:
+
+1. What exactly does the "-v" flag do?
+
+    The VOLUME instruction creates a mount point with the specified name and marks it as holding externally mounted volumes from native host or other containers
+
+2. How is data mainted between Docker Container instances?
+
+3. How do I add another Docker Container to the nginx/jwilder reverse proxy?
+
+4. Create MongoDB instances with diffrent connection strings e.g. localhost:27017/testBase1, localhost:27017/testBase2
+
+5. Angular Routing inside Docker Container?
+
+6. Diffrent envoirments within the Docker-Compose/Docker-File?
+

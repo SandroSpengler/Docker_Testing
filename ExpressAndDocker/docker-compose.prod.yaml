@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  nginx:
+    container_name: "NginxProd"
+    image: nginx:stable-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ../NginxAndDocker/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+  expressdocker:
+    container_name: "NodeServerProd"
+    build:
+      context: .
+      args:
+        NODE_ENV: production
+    environment:
+      - NODE_ENV=production
+      - DB_CONNECTION=mongodb://sandro:12345asdF@mongodocker:27017/?authSource=admin
+    command: npm run prod
+
+  mongodocker:
+    container_name: "MongoDBProd"
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=sandro
+      - MONGO_INITDB_ROOT_PASSWORD=12345asdF
+    volumes:
+      - ~/mongo/data:/data/db

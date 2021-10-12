@@ -1,0 +1,7 @@
+.git
+.gitignore
+.env
+Dockerfile
+docker-compose*
+node_modules
+Scripts
