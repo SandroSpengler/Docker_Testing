@@ -10,6 +10,8 @@ services:
       - ../NginxAndDocker/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - expressdocker
+    networks:
+      - WebserverNetwork
 
   expressdocker:
     container_name: "NodeServerMain"
@@ -21,6 +23,9 @@ services:
       - DB_CONNECTION=""
     depends_on:
       - mongodocker
+    networks:
+      - WebserverNetwork
+      - MongoDBNetwork
 
   mongodocker:
     container_name: "MongoDBMain"
@@ -30,3 +35,10 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=""
     volumes:
       - ~/mongo/data:/data/db
+    networks:
+      - WebserverNetwork
+      - MongoDBNetwork
+
+networks:
+  WebserverNetwork:
+  MongoDBNetwork:
