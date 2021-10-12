@@ -13,7 +13,7 @@ services:
 
   expressdocker:
     container_name: "NodeServerMain"
-    image: myexpressimage
+    image: sandrospengler/myexpressapp
     build:
       context: .
     environment:
