@@ -10,7 +10,7 @@ services:
       - ../NginxAndDocker/default.conf:/etc/nginx/conf.d/default.conf:ro
 
   expressdocker:
-    container_name: "NodeServerDev"
+    container_name: "NodeServerDev"123
     build:
       context: .
       args:
