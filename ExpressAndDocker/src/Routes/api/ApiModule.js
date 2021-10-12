@@ -15,7 +15,7 @@ router.get("", async (req, res) => {
 
 router.post("", async (req, res) => {
   try {
-    const tmpApiSchema = new ApiSchema({ firstName: "Hello World" });
+    const tmpApiSchema = new ApiSchema({ firstName: "dev", lastName: "environment 0" });
 
     const savedApiSchema = await tmpApiSchema.save();
 
