@@ -17,14 +17,14 @@ services:
         NODE_ENV: production
     environment:
       - NODE_ENV=production
-      - DB_CONNECTION=mongodb://sandro:12345asdF@mongodocker:27017/?authSource=admin
+      - DB_CONNECTION=${DB_CONNECTION}
     command: npm run prod
 
   mongodocker:
     container_name: "MongoDBProd"
     image: mongo:latest
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=sandro
-      - MONGO_INITDB_ROOT_PASSWORD=12345asdF
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - ~/mongo/data:/data/db
