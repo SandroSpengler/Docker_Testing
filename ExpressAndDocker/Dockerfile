@@ -11,9 +11,9 @@ COPY ./package.json /usr/src/app
 # RUN npm Install
 ARG NODE_ENV
 RUN if [ "$NODE_ENV" = "development" ]; \
-            then npm install; \
-            else npm install --only=production; \
-            fi
+    then npm install; \
+    else npm install --only=production; \
+    fi
 # Copy the client application source files. You can use .dockerignore to exlcude files. Works just as .gitignore doe$
 COPY . /usr/src/app
 # Open port 5000. This is the port that our development server uses. Expose only opens the PORT to other Docker containers. Use -P when running to make the port public. 
