@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 
 app.use("/api", ApiModule);
 
-const connectWithRetry = () => {
+connectWithRetry = () => {
   mongoose
     .connect(DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Working"))
@@ -32,8 +32,6 @@ const connectWithRetry = () => {
 };
 
 connectWithRetry();
-
-// mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }).catch((error) => console.error(error));
 
 // start app with envoirmentvariable
 app.listen(PORT);
