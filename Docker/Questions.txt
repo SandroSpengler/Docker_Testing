@@ -14,3 +14,5 @@ General Docker Questions:
 
 6. Diffrent envoirments within the Docker-Compose/Docker-File?
 
+To test production on localhost you need to change the request soruce
+curl --header "Host: example.com" http://127.0.0.1/
