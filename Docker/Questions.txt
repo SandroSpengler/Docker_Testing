@@ -14,5 +14,15 @@ General Docker Questions:
 
 6. Diffrent envoirments within the Docker-Compose/Docker-File?
 
+Bonus:
+
+    Add Subdomains to DNS (Usual Address Record)
+
+
 To test production on localhost you need to change the request soruce
 curl --header "Host: example.com" http://127.0.0.1/
+
+git rm -r --cached .
+git add .
+git commit -m "fixed untracked files"
+
