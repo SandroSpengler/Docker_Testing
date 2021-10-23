@@ -33,10 +33,11 @@ services:
       - WebserverNetwork
 
   letsencrypt:
+    container_name: "letsencrypt"
     image: jrcs/letsencrypt-nginx-proxy-companion
     environment:
       - DEFAULT_EMAIL=sandro.spengler@web.de
-      - NGINX_PROXY_CONTAINER=proxy
+      - NGINX_PROXY_CONTAINER=nginxproxy
     volumes_from:
       - nginxproxy
     volumes:
@@ -45,7 +46,6 @@ services:
     networks:
       - WebserverNetwork
     restart: always
-
 
   expressdocker:
     container_name: "NodeServerMain"
