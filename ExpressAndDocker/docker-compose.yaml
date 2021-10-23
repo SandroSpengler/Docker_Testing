@@ -20,12 +20,30 @@ services:
     image: jwilder/nginx-proxy
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    ### required for Let's Encrypt certificates
+      - nginx_certs:/etc/nginx/certs:ro
+      - nginx_vhosts:/etc/nginx/vhost.d
+      - nginx_html:/usr/share/nginx/html
     depends_on:
       - expressdocker
     networks:
       - WebserverNetwork
+
+  letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    environment:
+      - DEFAULT_EMAIL=sandro.spengler@web.de
+      - NGINX_PROXY_CONTAINER=proxy
+    volumes_from:
+      - nginxproxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - nginx_certs:/etc/nginx/certs:rw
+    restart: always
+
 
   expressdocker:
     container_name: "NodeServerMain"
@@ -35,7 +53,8 @@ services:
     environment:
       - PORT=5000
       - DB_CONNECTION=""
-      - VIRTUAL_HOST=app.localhost
+      - VIRTUAL_HOST=docker.localhost
+      - LETSENCRYPT_HOST=docker.localhost
     depends_on:
       - mongodocker
     networks:
@@ -57,3 +76,9 @@ services:
 networks:
   WebserverNetwork:
   MongoDBNetwork:
+
+volumes:
+  #### NGINX reverse proxy container volumes
+  nginx_certs:
+  nginx_vhosts:
+  nginx_html:
