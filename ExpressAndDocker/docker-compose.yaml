@@ -1,18 +1,5 @@
+### Base Image for Docker-Compose Services
 version: "3"
-
-# Used for Path reverse Proxy
-# services:
-# nginx:
-#   container_name: "NginxMain"
-#   image: nginx:stable-alpine
-#   ports:
-#     - "80:80"
-#   volumes:
-#     - ../NginxAndDocker/default.conf:/etc/nginx/conf.d/default.conf:ro
-#   depends_on:
-#     - expressdocker
-#   networks:
-#     - WebserverNetwork
 
 services:
   nginxproxy:
@@ -38,11 +25,11 @@ services:
     environment:
       - DEFAULT_EMAIL=sandro.spengler@web.de
       - NGINX_PROXY_CONTAINER=nginxproxy
-    volumes_from:
-      - nginxproxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - nginx_certs:/etc/nginx/certs:rw
+      - nginx_vhosts:/etc/nginx/vhost.d
+      - nginx_html:/usr/share/nginx/html
     networks:
       - WebserverNetwork
     restart: always
