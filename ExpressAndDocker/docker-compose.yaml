@@ -24,10 +24,12 @@ services:
     image: nginx
     environment:
     ### ToDo: Change to your public DNS name
-      - VIRTUAL_HOST="axfert.com"
-      - LETSENCRYPT_HOST="axfert.com"
-    depends_on:
-      - nginxproxy
+      - VIRTUAL_HOST=xxx
+      - LETSENCRYPT_HOST=xxx
+    networks:
+      - WebserverNetwork
+    # depends_on:
+    #   - nginxproxy
     restart: always
 
   # webexpress1:
