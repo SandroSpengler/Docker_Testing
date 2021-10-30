@@ -17,6 +17,24 @@ services:
       - LETSENCRYPT_HOST=docker.sandrospengler.com
     command: npm run prod
 
+  webexpress:
+    image: nginx
+    environment:
+    ### ToDo: Change to your public DNS name
+      - VIRTUAL_HOST="axfert.com"
+      - LETSENCRYPT_HOST="axfert.com"
+    restart: always
+
+  webexpress1:
+    image: nginx
+    environment:
+    ### ToDo: Change to your public DNS name
+      - VIRTUAL_HOST=""
+      - LETSENCRYPT_HOST=""
+    depends_on:
+      - nginxproxy
+    restart: always
+
   mongodocker:
     container_name: "MongoDBProd"
     image: mongo:latest
