@@ -18,6 +18,7 @@ services:
       - expressdocker
     networks:
       - WebserverNetwork
+      - FrontEndSubDomain
 
   webexpress:
     container_name: "nginxMain"
@@ -32,15 +33,16 @@ services:
     #   - nginxproxy
     restart: always
 
-  # webexpress1:
-  #   image: nginx
-  #   environment:
-  #   ### ToDo: Change to your public DNS name
-  #     - VIRTUAL_HOST=""
-  #     - LETSENCRYPT_HOST=""
-  #   depends_on:
-  #     - nginxproxy
-  #   restart: always
+  webexpress1:
+    container_name: "nginxAppMain"
+    image: nginx
+    environment:
+    ### ToDo: Change to your public DNS name
+      - VIRTUAL_HOST=xxx
+      - LETSENCRYPT_HOST=xxx
+    networks:
+      - FrontEndSubDomain
+    restart: always
 
   letsencrypt:
     container_name: "letsencrypt"
@@ -87,6 +89,7 @@ services:
 
 networks:
   WebserverNetwork:
+  FrontEndSubDomain:
   MongoDBNetwork:
 
 volumes:
