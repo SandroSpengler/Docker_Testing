@@ -18,21 +18,21 @@ services:
     command: npm run prod
 
   webdefault:
+    container_name: "nginxProd"
     image: nginx
     environment:
-    ### ToDo: Change to your public DNS name
-      - VIRTUAL_HOST="axfert.com"
-      - LETSENCRYPT_HOST="axfert.com"
+      - VIRTUAL_HOST=axfert.com
+      - LETSENCRYPT_HOST=axfert.com
     restart: always
 
   webexpressapp:
+    container_name: "nginxAppProd"
     image: nginx
     environment:
-    ### ToDo: Change to your public DNS name
-      - VIRTUAL_HOST=""
-      - LETSENCRYPT_HOST=""
-    depends_on:
-      - nginxproxy
+      - VIRTUAL_HOST=app.axfert.com
+      - LETSENCRYPT_HOST=app.axfert.com
+    volumes:
+      - ~/Docker/FrontEnds/app:/usr/share/nginx/html
     restart: always
 
   mongodocker:
@@ -42,4 +42,4 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
-      - ~/mongo/data:/data/db
+      - ~/MongoDB/mongoApp/data:/data/db
