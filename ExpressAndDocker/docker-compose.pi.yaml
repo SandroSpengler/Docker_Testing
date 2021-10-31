@@ -1,22 +1,6 @@
 ### used for deployment on the raspberypi 4 
 version: "3"
 
-services:
-  expressdocker:
-    container_name: "NodeServerPi"
-    build:
-      context: .
-      args:
-        NODE_ENV: production
-    ports:
-      - "5000"
-    environment:
-      - NODE_ENV=development
-      - DB_CONNECTION=mongodb://sandro:12345asdF@mongodocker:27017/?authSource=admin
-      - VIRTUAL_HOST=docker.localhost
-      - LETSENCRYPT_HOST=docker.localhost
-    command: npm run prod
-
   mongodocker:
     container_name: "MongoDBPi"
     image: mongo:bionic
@@ -24,4 +8,4 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=sandro
       - MONGO_INITDB_ROOT_PASSWORD=12345asdF
     volumes:
-      - ~/mongo/ExpressAndDocker/data:/data/db
+      - ~/MongoDB/mongoApp/data:/data/db
