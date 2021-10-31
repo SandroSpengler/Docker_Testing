@@ -1,6 +1,41 @@
 ### used for deployment on the raspberypi 4 
 version: "3"
 
+services:
+  expressdocker:
+    container_name: "NodeServerPi"
+    build:
+      context: .
+      args:
+        NODE_ENV: production
+    ports:
+      - "5000"
+    environment:
+      - NODE_ENV=development
+      - DB_CONNECTION=mongodb://sandro:12345asdF@mongodocker:27017/?authSource=admin
+      - VIRTUAL_HOST=docker.localhost
+      - LETSENCRYPT_HOST=docker.localhost
+    command: npm run prod
+
+  webdefault:
+    container_name: "nginxProd"
+    image: nginx
+    environment:
+      - VIRTUAL_HOST=axfert.com
+      - LETSENCRYPT_HOST=axfert.com
+    restart: always
+
+  webexpressapp:
+    container_name: "nginxAppProd"
+    image: nginx
+    environment:
+      - VIRTUAL_HOST=app.axfert.com
+      - LETSENCRYPT_HOST=app.axfert.com
+    volumes:
+      - ~/Docker/FrontEnds/app:/usr/share/nginx/html
+    restart: always
+
+
   mongodocker:
     container_name: "MongoDBPi"
     image: mongo:bionic
