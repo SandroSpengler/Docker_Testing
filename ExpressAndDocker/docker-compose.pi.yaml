@@ -13,8 +13,8 @@ services:
     environment:
       - NODE_ENV=development
       - DB_CONNECTION=mongodb://sandro:12345asdF@mongodocker:27017/?authSource=admin
-      - VIRTUAL_HOST=docker.localhost
-      - LETSENCRYPT_HOST=docker.localhost
+      - VIRTUAL_HOST=dockerapp.axfert.com
+      - LETSENCRYPT_HOST=dockerapp.axfert.com
     command: npm run prod
 
   webdefault:
@@ -34,7 +34,6 @@ services:
     volumes:
       - ~/Docker/FrontEnds/app:/usr/share/nginx/html
     restart: always
-
 
   mongodocker:
     container_name: "MongoDBPi"
