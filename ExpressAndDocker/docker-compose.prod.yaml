@@ -17,7 +17,7 @@ services:
       - LETSENCRYPT_HOST=docker.sandrospengler.com
     command: npm run prod
 
-  webexpress:
+  webdefault:
     image: nginx
     environment:
     ### ToDo: Change to your public DNS name
@@ -25,7 +25,7 @@ services:
       - LETSENCRYPT_HOST="axfert.com"
     restart: always
 
-  webexpress1:
+  webexpressapp:
     image: nginx
     environment:
     ### ToDo: Change to your public DNS name
