@@ -20,5 +20,3 @@ COPY . /usr/src/app
 # Set at runtime by the docker-compose
 # EXPOSE 5000
 # Install required dependencies# Start the application. This is the same as running ng serve.
-#Get Started out of Docker
-# CMD ["npm run prod"]
