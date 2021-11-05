@@ -1,4 +1,4 @@
-### used for deployment on the raspberypi 4 
+### used for deployment on the raspberypi 4
 version: "3"
 
 services:
