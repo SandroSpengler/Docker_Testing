@@ -1,6 +1,6 @@
 #1. Build and Runs the Docker-Compose Envoirment
 #2. Clears unnecessary images
-CLEAR=$1
+# CLEAR=$1
 
 docker-compose down --remove-orphans -v
 
