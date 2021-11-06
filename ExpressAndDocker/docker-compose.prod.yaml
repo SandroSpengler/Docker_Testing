@@ -13,24 +13,24 @@ services:
     environment:
       - NODE_ENV=production
       - DB_CONNECTION=${DB_CONNECTION}
-      - VIRTUAL_HOST=dockerapp.axfert.com
-      - LETSENCRYPT_HOST=dockerapp.axfert.com
+      - VIRTUAL_HOST=dockerapp.sandrospengler.com
+      - LETSENCRYPT_HOST=dockerapp.sandrospengler.com
     command: npm run prod
 
   webdefault:
     container_name: "nginxProd"
     image: nginx
     environment:
-      - VIRTUAL_HOST=axfert.com
-      - LETSENCRYPT_HOST=axfert.com
+      - VIRTUAL_HOST=sandrospengler.com
+      - LETSENCRYPT_HOST=sandrospengler.com
     restart: always
 
   webexpressapp:
     container_name: "nginxAppProd"
     image: nginx
     environment:
-      - VIRTUAL_HOST=app.axfert.com
-      - LETSENCRYPT_HOST=app.axfert.com
+      - VIRTUAL_HOST=app.sandrospengler.com
+      - LETSENCRYPT_HOST=app.sandrospengler.com
     volumes:
       - ~/Docker/FrontEnds/app:/usr/share/nginx/html
     restart: always

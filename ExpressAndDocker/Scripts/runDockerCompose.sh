@@ -6,7 +6,7 @@ docker-compose down --remove-orphans -v
 
 docker-compose \
     -f docker-compose.yaml \
-    -f docker-compose.dev.yaml \
+    -f docker-compose.prod.yaml \
     up -d \
     --build \
     # runs only one container
